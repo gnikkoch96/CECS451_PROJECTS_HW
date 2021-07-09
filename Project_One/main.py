@@ -1,16 +1,35 @@
-# This is a sample Python script.
+# -----------------------------------------------------------------------
+#   Constructs a graph data structure
+#   (c) 2021 Rishika Baranawl and Nikko Chan
+#
+#   Date: 07/12/2021
+#   Name(s): Rishika Baranawl and Nikko Chan
+#   Student ID: 016064033 (Nikko)
+#   E-Mail: Nikko.Chan@student.csulb.edu
+#   Version:
+# -----------------------------------------------------------------------
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Graph Class
+class Graph(object): # Nikko Notes (NN): object is inherited (remove all NN when submitting)
+    # NN: self is used to refer to instance properties
+    def _init_(self): # NN: _init_ is kind of like a constructor
+        self.vert_dict = {}
+        self.num_vertices = 0
+
+    def add_vertex(self, node):
+        new_v = Vertex(node)
+        self.vert_dict[node] = new_v # NN: key = node , value = new_v
+        self.num_vertices = self.num_vertices + 1
+
+    def get_vertex(self, node):
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+# Vertex Class (NN: represents a single node on the graph)
+class Vertex:
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+
