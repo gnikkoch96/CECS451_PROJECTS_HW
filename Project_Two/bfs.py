@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------
-#   Main Class used to test the different search strategies
+#   Utilize Breadth First-Search to Find the Path from Point to Goal
 #   (c) 2021 Rishika Baranawl and Nikko Chan
 #
 #   Date: 07/20/2021
@@ -8,11 +8,10 @@
 #   E-Mail: Nikko.Chan@student.csulb.edu, rishika.baranwal@student.csulb.edu
 #   Version: 1.0.0
 # -----------------------------------------------------------------------
+
 import graph
-import gameboard
 
-# Creates the Gameboard
-gb = gameboard.GameBoard()
+# takes in the graph problem to search through
+def bfs(graph):
 
-# Creates the Graph of the Gameboard
-g = graph.Graph(gb)
+
