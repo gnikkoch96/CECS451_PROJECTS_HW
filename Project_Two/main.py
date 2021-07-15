@@ -1,5 +1,6 @@
 # -----------------------------------------------------------------------
-#   Main Class used to test the different search strategies
+#   Project 2: Maze Search
+#   Description: Choosing a maze, we must utilize A*, BFS, and DFS to find the path from starting node to goal node
 #   (c) 2021 Rishika Baranawl and Nikko Chan
 #
 #   Date: 07/20/2021
@@ -14,5 +15,6 @@ import gameboard
 # Creates the Gameboard
 gb = gameboard.GameBoard()
 
+
 # Creates the Graph of the Gameboard
-g = graph.Graph(gb)
+# g = graph.Graph(gb)
