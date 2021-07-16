@@ -19,6 +19,7 @@ class GameBoard(object):
         self.maze_to_array = self.create_2d_array()
         self.store_maze_2D()
         print(self.maze_to_array)
+        self.mazeFile.close()
 
     # loads the map of the user's choice
     def load_map(self):
@@ -32,26 +33,24 @@ class GameBoard(object):
 
     # stores the maze in a 2D data structure
     def store_maze_2D(self):
-        row = 0
-        col = 0
-        for line in self.mazeFile.readlines():
-            print(line)
-            for char in line:
-                self.maze_to_array[row][col] = char
-                col = col + 1
-            row = row + 1
-            col = 0
+
+        self.mazeFile.seek(0) # reset the file read after
+        for row in len(self.maze_to_array):
+            for col in len(self.maze_to_array[i]):
+                print(col)
+                self.maze_to_array[row][col] =
 
     # returns a 2d array of count_row x count_col
     def create_2d_array(self):
         count_row = 0
         count_col = 0
+        self.mazeFile.seek(0) # reset the file read after
         for i in self.mazeFile.readlines():
             count_row = count_row + 1
             count_col = 0
             for j in i:
                 count_col = count_col + 1
-
+        print(count_row, " x ", count_col)
         return [[0 for col in range(count_col)] for row in range(count_row)]
 
     # gets the Location of the Starting Node
