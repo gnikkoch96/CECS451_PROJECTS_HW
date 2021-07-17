@@ -33,14 +33,6 @@ class GameBoard(object):
 
     # stores the maze in a 2D data structure
     def store_maze_2D(self):
-<<<<<<< Updated upstream
-
-        self.mazeFile.seek(0) # reset the file read after
-        for row in len(self.maze_to_array):
-            for col in len(self.maze_to_array[i]):
-                print(col)
-                self.maze_to_array[row][col] =
-=======
         count_row = 0
         count_col = 0
         self.mazeFile.seek(0) # reset the file read after
@@ -51,7 +43,6 @@ class GameBoard(object):
                     count_col = count_col + 1
             count_row = count_row + 1
             count_col = 0
->>>>>>> Stashed changes
 
     # returns a 2d array of count_row x count_col
     def create_2d_array(self):
