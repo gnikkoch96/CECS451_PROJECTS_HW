@@ -24,25 +24,31 @@ g = graph.Graph()
 for row in range(len(gb.maze_to_array)):
     for column in range(len(gb.maze_to_array[row])):
         if gb.maze_to_array[row][column] != '%':
+            current_char = gb.maze_to_array[row][column]
+
             # check up
             if (row - 1) >= 0:
-                if gb.maze_to_array[row - 1][column] != '%':
-                    g.add_edge(gb.maze_to_array[row][column], gb.maze_to_array[row - 1][column])
+                up_char = gb.maze_to_array[row - 1][column]
+                if up_char != '%':
+                    g.add_edge(current_char, up_char)
 
-            #check down
+            # check down
             if (row + 1) < len(gb.maze_to_array):
-                if gb.maze_to_array[row + 1][column] != '%':
-                    g.add_edge(gb.maze_to_array[row][column], gb.maze_to_array[row + 1][column])
+                down_char = gb.maze_to_array[row + 1][column]
+                if down_char != '%':
+                    g.add_edge(current_char, down_char)
 
-            #check left
+            # check left
             if (column - 1) >= 0:
-                if gb.maze_to_array[row][column - 1] != '%':
-                    g.add_edge(gb.maze_to_array[row][column], gb.maze_to_array[row + 1][column - 1])
+                left_char = gb.maze_to_array[row][column - 1]
+                if left_char != '%':
+                    g.add_edge(current_char, left_char)
 
-            #check right
+            # check right
             if (column + 1) < len(gb.maze_to_array[row]):
-                if gb.maze_to_array[row][column + 1] != '%':
-                    g.add_edge(gb.maze_to_array[row][column], gb.maze_to_array[row][column + 1])
+                right_char = gb.maze_to_array[row][column + 1]
+                if right_char != '%':
+                    g.add_edge(current_char, right_char)
 
 g.graph_summery()
 
