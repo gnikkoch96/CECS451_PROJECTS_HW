@@ -12,9 +12,15 @@
 import graph
 import gameboard
 
+<<<<<<< Updated upstream
 # Creates the Gameboard
 gb = gameboard.GameBoard()
 
 
+=======
+# Creates the Gameboard (Using a 2D Array)
+gb = gameboard.GameBoard()
+
+>>>>>>> Stashed changes
 # Creates the Graph of the Gameboard
 # g = graph.Graph(gb)
