@@ -14,14 +14,22 @@ import gameboard
 
 # Creates the Gameboard (Using a 2D Array)
 gb = gameboard.GameBoard()
-print(gb.getStart())
-print(gb.getGoal())
+# print(gb.getStart())
+# print(gb.getGoal())
 
 # Creates the Graph of the Gameboard
 g = graph.Graph()
 
-# create the nodes by adding an edge to them where the node is the node_counter
-# for i in gb.maze_to_array:
-#     for j in i:
-#         if(j != %):
-#             g.
+# # create vertex and add edges to all "_", ".", and "P"
+# for row in range(len(gb.maze_to_array)):
+#     for column in range(len(gb.maze_to_array[row])):
+#         if gb.maze_to_array[row][column] != '%':
+#             # check up
+#             if (row - 1) >= 0:
+#                 if gb.maze_to_array[row - 1][column] != '%':
+#
+#             #check down
+#
+#             #check left
+#
+#             #check right

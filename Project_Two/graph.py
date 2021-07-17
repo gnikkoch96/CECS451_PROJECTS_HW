@@ -59,7 +59,8 @@ class Vertex:
     def get_connections(self):
         return self.adjacent.keys()
 
-    def add_neighbour(self, objNeighbour, weight):
+    # default weight is 1
+    def add_neighbour(self, objNeighbour, weight=1):
         # NN: appends the objNeighbour to the adjacent list if it doesn't already exist in the dictionary
         self.adjacent[objNeighbour] = weight
 
