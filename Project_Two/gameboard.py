@@ -59,9 +59,16 @@ class GameBoard(object):
 
     # gets the Location of the Starting Node
     def getStart(self):
-        pass
+        for row in range(len(self.maze_to_array)):
+            for column in range(len(self.maze_to_array[row])):
+                if self.maze_to_array[row][column] == 'P':
+                    return row, column
+
 
     # gets the Location of the Goal Node
     def getGoal(self):
-        pass
+        for row in range(len(self.maze_to_array)):
+            for column in range(len(self.maze_to_array[row])):
+                if self.maze_to_array[row][column] == '.':
+                    return row, column
 
