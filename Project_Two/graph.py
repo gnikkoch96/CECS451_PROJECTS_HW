@@ -5,18 +5,18 @@ class Graph(object):  # Nikko Notes (NN): object is inherited (remove all NN whe
         self.vert_dict = {}
         self.num_vertices = 0
 
-    def add_vertex(self, node):
+    def add_vertex(self, id, node):
         new_v = Vertex(node)
-        self.vert_dict[node] = new_v  # NN: key = node , value = new_v
+        self.vert_dict[id] = new_v  # NN: key = node , value = new_v
         self.num_vertices = self.num_vertices + 1
 
     def add_edge(self, from_edge, to_edge, weight):
         # if it isn't currenlty on the dictionary, then add it
         if from_edge not in self.vert_dict:
-            self.add_vertex(from_edge)
+            self.add_vertex(self.num_vertices + 1, from_edge)
 
         if to_edge not in self.vert_dict:
-            self.add_vertex(to_edge)
+            self.add_vertex(self.num_vertices + 1, to_edge)
 
         # add the neighbors for both from_edge and to_edge
         self.vert_dict[from_edge].add_neighbour(self.vert_dict[to_edge], weight)
