@@ -57,6 +57,13 @@ class GameBoard(object):
         print(count_row, " x ", count_col)
         return [[0 for col in range(count_col)] for row in range(count_row)]
 
+    def get_row_count(self):
+        return len(self.maze_to_array)
+
+    # assuming that all rows have the same column size
+    def get_col_count(self):
+        return len(self.maze_to_array[0])
+
     # gets the Location of the Starting Node
     def getStart(self):
         for row in range(len(self.maze_to_array)):
@@ -71,4 +78,3 @@ class GameBoard(object):
             for column in range(len(self.maze_to_array[row])):
                 if self.maze_to_array[row][column] == '.':
                     return row, column
-

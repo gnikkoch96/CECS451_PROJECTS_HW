@@ -13,22 +13,25 @@
 # Graph Class
 class Graph(object):
     def __init__(self):
-        self.vert_dict = {}
-        self.num_vertices = 0
+        self.vert_dict = {} # example: key = 1, value = " "
+        self.num_vertices = 0 # this will be the id for each node since repeating characters are possible
 
     # id was added to give same characters a unique identifier
-    def add_vertex(self, node):
-        new_v = Vertex(node)
-        self.vert_dict[node] = new_v  # NN: key = id , value = new_v
+    def add_vertex(self, id, node):
+        new_v = Vertex(id, node)
+        self.vert_dict[id] = new_v  # NN: key = id , value = new_v
         self.num_vertices = self.num_vertices + 1
 
     def add_edge(self, from_edge, to_edge, weight=1):
         # if it isn't currently on the dictionary, then add it
+
         if from_edge not in self.vert_dict:
-            self.add_vertex(from_edge)
+            self.add_vertex(self.num_vertices, from_edge)
 
         if to_edge not in self.vert_dict:
-            self.add_vertex(to_edge)
+            self.add_vertex(self.num_vertices, to_edge)
+
+
 
         # add the neighbors for both from_edge and to_edge
         self.vert_dict[from_edge].add_neighbour(self.vert_dict[to_edge], weight)
@@ -44,13 +47,14 @@ class Graph(object):
 
 
 class Vertex:
-    def __init__(self, node):
-        self.id = node
+    def __init__(self, id, node):
+        self.id = id
+        self.node = node
         self.adjacent = {}
 
     # returns the node id when converted to string
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     # returns the adjacent nodes
     def get_connections(self):
@@ -63,6 +67,9 @@ class Vertex:
 
     def get_id(self):
         return self.id
+
+    def get_node(self): # returns the node value
+        return self.node
 
     def get_weight(self, neighbour):
         return self.adjacent[neighbour]
