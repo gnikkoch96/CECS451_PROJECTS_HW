@@ -68,7 +68,7 @@ def create_graph():
 
 # Gameboard class is used to convert the maze file into a 2d array
 gb = gameboard.GameBoard()
-Solution.create_file(gb)
+Solution.create_file(gb, gb.mazeName)
 # row_p, col_p = gb.getStart()
 # print(row_p, col_p)
 

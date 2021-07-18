@@ -14,7 +14,7 @@ import numpy as np
 class Solution:
 
     @staticmethod
-    def create_file(gameboard):
+    def create_file(gameboard, filename):
         list = []
         for row in range(len(gameboard.maze_to_array)):
             str_row = ""
@@ -28,7 +28,7 @@ class Solution:
 
         # Displaying the array
         print('Array:\n', Array)
-        file = open("file2.txt", "w+")
+        file = open(filename + ".txt", "w+")
 
         # Saving the 2D array in a text file
         for line in Array:
@@ -37,8 +37,8 @@ class Solution:
         file.close()
 
         # Displaying the contents of the text file
-        file = open("file2.txt", "r")
-        content = file.read()
+        # file = open(filename + ".txt", "r")
+        # content = file.read()
 
-        print("\nContent in file2.txt:\n", content)
-        file.close()
+        # print("\nContent in file2.txt:\n", content)
+        # file.close()

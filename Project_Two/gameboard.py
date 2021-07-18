@@ -14,6 +14,7 @@ class GameBoard(object):
     def __init__(self):
         # User chooses which maze they want to do
         self.mazeFile = None
+        self.mazeName = None
         self.maze_array = None
         self.load_map()
         self.maze_to_array = self.create_2d_array()
@@ -26,10 +27,13 @@ class GameBoard(object):
         userInputMaze = int(input("Choose Layout: \n1.Small Maze\n2.Medium Maze\n3.Big Maze\nChoice: "))
         if userInputMaze == 1:
             self.mazeFile = open("mazes\\smallMaze.lay", "r")
+            self.mazeName = "smallMaze"
         elif userInputMaze == 2:
             self.mazeFile = open("mazes\\mediumMaze.lay", "r")
+            self.mazeName = "mediumMaze"
         else:
             self.mazeFile = open("mazes\\bigMaze.lay", "r")
+            self.mazeName = "bigMaze"
 
     # stores the maze in a 2D data structure
     def store_maze_2D(self):
