@@ -11,14 +11,16 @@
 # -----------------------------------------------------------------------
 import graph
 import gameboard
-import csv
+from convert_to_file import Solution
 
 # Functions
-def create_graph(gameboard):
+
+
+def create_graph():
     # Creates the Graph of the Gameboard
     g = graph.Graph()
 
-    # create a vertex for all chars on the maze
+    # create a vertex for all chars on the maze using the num_vertices as the id for each vertex
     for row in range(len(gb.maze_to_array)):
         for column in range(len(gb.maze_to_array[row])):
             g.add_vertex(g.num_vertices, gb.maze_to_array[row][column])
@@ -66,7 +68,7 @@ def create_graph(gameboard):
 
 # Gameboard class is used to convert the maze file into a 2d array
 gb = gameboard.GameBoard()
-
+Solution.create_file(gb)
 # row_p, col_p = gb.getStart()
 # print(row_p, col_p)
 
@@ -74,5 +76,5 @@ gb = gameboard.GameBoard()
 # print(row_g, col_g)
 
 # Creates the graph
-g = create_graph(gb)
+g = create_graph()
 g.graph_summery()

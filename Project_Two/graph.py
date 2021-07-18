@@ -13,8 +13,8 @@
 # Graph Class
 class Graph(object):
     def __init__(self):
-        self.vert_dict = {} # example: key = 1, value = " "
-        self.num_vertices = 0 # this will be the id for each node since repeating characters are possible
+        self.vert_dict = {}  # example: key = 1, value = " "
+        self.num_vertices = 0  # this will be the id for each node since repeating characters are possible
 
     # id was added to give same characters a unique identifier
     def add_vertex(self, id, node):
@@ -31,8 +31,6 @@ class Graph(object):
         if to_edge not in self.vert_dict:
             self.add_vertex(self.num_vertices, to_edge)
 
-
-
         # add the neighbors for both from_edge and to_edge
         self.vert_dict[from_edge].add_neighbour(self.vert_dict[to_edge], weight)
 
@@ -44,7 +42,6 @@ class Graph(object):
             vertex_n = self.vert_dict[n]
             for v in vertex_n.get_connections():
                 print(vertex_n.get_node(), '->', v.get_node(), ' : ', vertex_n.get_weight(v))
-                # print(n, '->', v, ' : ', vertex_n.get_weight(v))
 
 
 class Vertex:
@@ -63,13 +60,12 @@ class Vertex:
 
     # default weight is 1
     def add_neighbour(self, objNeighbour, weight=1):
-        # NN: appends the objNeighbour to the adjacent list if it doesn't already exist in the dictionary
         self.adjacent[objNeighbour] = weight
 
     def get_id(self):
         return self.id
 
-    def get_node(self): # returns the node value
+    def get_node(self):
         return self.node
 
     def get_weight(self, neighbour):
