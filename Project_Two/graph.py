@@ -43,7 +43,8 @@ class Graph(object):
         for n in self.get_vertices():
             vertex_n = self.vert_dict[n]
             for v in vertex_n.get_connections():
-                print(n, '->', v, ' : ', vertex_n.get_weight(v))
+                print(vertex_n.get_node(), '->', v.get_node(), ' : ', vertex_n.get_weight(v))
+                # print(n, '->', v, ' : ', vertex_n.get_weight(v))
 
 
 class Vertex:
