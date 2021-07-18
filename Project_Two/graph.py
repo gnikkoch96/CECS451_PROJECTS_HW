@@ -17,8 +17,8 @@ class Graph(object):
         self.num_vertices = 0  # this will be the id for each node since repeating characters are possible
 
     # id was added to give same characters a unique identifier
-    def add_vertex(self, id, node):
-        new_v = Vertex(id, node)
+    def add_vertex(self, id, node, row, col):
+        new_v = Vertex(id, node, row, col)
         self.vert_dict[id] = new_v  # NN: key = id , value = new_v
         self.num_vertices = self.num_vertices + 1
 
@@ -26,10 +26,10 @@ class Graph(object):
         # if it isn't currently on the dictionary, then add it
 
         if from_edge not in self.vert_dict:
-            self.add_vertex(self.num_vertices, from_edge)
+            print("Error: From_Edge does not exist")
 
         if to_edge not in self.vert_dict:
-            self.add_vertex(self.num_vertices, to_edge)
+            print("Error: To_Edge does not exist")
 
         # add the neighbors for both from_edge and to_edge
         self.vert_dict[from_edge].add_neighbour(self.vert_dict[to_edge], weight)
@@ -42,13 +42,15 @@ class Graph(object):
             vertex_n = self.vert_dict[n]
             for v in vertex_n.get_connections():
                 print(vertex_n.get_node(), '->', v.get_node(), ' : ', vertex_n.get_weight(v))
-
+                
 
 class Vertex:
-    def __init__(self, id, node):
+    def __init__(self, id, node, row, col):
         self.id = id
         self.node = node
         self.adjacent = {}
+        self.row_location = row
+        self.col_location = col
 
     # returns the node id when converted to string
     def __str__(self):
@@ -61,6 +63,10 @@ class Vertex:
     # default weight is 1
     def add_neighbour(self, objNeighbour, weight=1):
         self.adjacent[objNeighbour] = weight
+
+    # returns iterable of row and column location values
+    def get_location(self):
+        return self.row_location, self.col_location
 
     def get_id(self):
         return self.id

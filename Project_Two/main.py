@@ -23,7 +23,7 @@ def create_graph():
     # create a vertex for all chars on the maze using the num_vertices as the id for each vertex
     for row in range(len(gb.maze_to_array)):
         for column in range(len(gb.maze_to_array[row])):
-            g.add_vertex(g.num_vertices, gb.maze_to_array[row][column])
+            g.add_vertex(g.num_vertices, gb.maze_to_array[row][column], row, column)
 
     # create vertex and add edges to all "_", ".", and "P"
     for node_id in g.get_vertices():
@@ -68,12 +68,6 @@ def create_graph():
 
 # Gameboard class is used to convert the maze file into a 2d array
 gb = gameboard.GameBoard()
-Solution.create_file(gb, gb.mazeName)
-# row_p, col_p = gb.getStart()
-# print(row_p, col_p)
-
-# row_g, col_g = gb.getGoal()
-# print(row_g, col_g)
 
 # Creates the graph
 g = create_graph()

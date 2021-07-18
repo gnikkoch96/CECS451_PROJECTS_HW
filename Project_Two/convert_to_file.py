@@ -14,6 +14,7 @@ import numpy as np
 class Solution:
 
     @staticmethod
+    # How to use: Solution.create_file(gameboard, filename) -> creates a .txt file
     def create_file(gameboard, filename):
         list = []
         for row in range(len(gameboard.maze_to_array)):
