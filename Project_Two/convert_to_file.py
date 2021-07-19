@@ -12,7 +12,6 @@ import numpy as np
 
 
 class Solution:
-
     @staticmethod
     # How to use: Solution.create_file(gameboard, filename) -> creates a .txt file
     def create_file(gameboard, filename):
@@ -23,12 +22,9 @@ class Solution:
                 str_row = str_row + gameboard.maze_to_array[row][col]
             list.append(str_row)
 
-        print(list)
-
         Array = np.array(list)
 
         # Displaying the array
-        print('Array:\n', Array)
         file = open(filename + ".txt", "w+")
 
         # Saving the 2D array in a text file
@@ -36,10 +32,3 @@ class Solution:
             file.write(line + "\n")
 
         file.close()
-
-        # Displaying the contents of the text file
-        # file = open(filename + ".txt", "r")
-        # content = file.read()
-
-        # print("\nContent in file2.txt:\n", content)
-        # file.close()

@@ -16,7 +16,6 @@ from convert_to_file import Solution
 # Functions
 from dfs import DFS
 
-
 def create_graph():
     # Creates the Graph of the Gameboard
     g = graph.Graph()
@@ -31,6 +30,8 @@ def create_graph():
         current_node = g.vert_dict[node_id].get_node()
         if current_node != '%':
 
+            # note depending on how we place the way we check things (i.e. up, down, left, right) will make the path
+            # more efficient
             # check up
             validate_value = node_id - gb.get_col_count()
             if validate_value >= 0:
@@ -74,14 +75,6 @@ gb = gameboard.GameBoard()
 g = create_graph()
 DFS.depth_first(g, gb)
 Solution.create_file(gb, gb.mazeName)
-# print(g.vert_dict[g.get_node('P')].get_node())
 
-# Example of how to replace the ' ' with a '.' in the gameboard then print the solution out to a txt file
-# for node_id in g.get_vertices():
-#     current_char = g.vert_dict[node_id].get_node()
-#     if current_char == ' ':
-#         row, col = g.vert_dict[node_id].get_location()
-#         gb.maze_to_array[row][col] = '.'
-#
-# Solution.create_file(gb, gb.mazeName)
+
 

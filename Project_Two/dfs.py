@@ -12,12 +12,11 @@
 import queue
 
 class DFS:
+
     @staticmethod
     # graph - used for search
     # gameboard - update the 2d array
     def depth_first(graph, gameboard):
-        found_goal = False
-
         # fringe queue (LIFO)
         fringe = queue.LifoQueue()
 
@@ -27,15 +26,20 @@ class DFS:
         # creates a visited hashset (prevents duplicates)
         visited = set()
 
+        # path to goal (FIFO)
+        path = []
+
         # visit each node possible from P
         while fringe.not_empty:
             node = fringe.get()
             if node.get_node() == '.':
-                found_goal = True
-                return node
+                return
 
             if node not in visited:
                 visited.add(node)
+                path.append(node)
+                print("Current Node:", node.get_id())
+
                 if node.get_node() != 'P':
                     node_row, node_col = node.get_location()
                     gameboard.maze_to_array[node_row][node_col] = '.'
@@ -44,7 +48,17 @@ class DFS:
                 for adj_node in node.get_connections():
                     fringe.put(adj_node)
 
-        return found_goal # returns true if the goal was found, else it returns false
+            else: # if the node was visited, then it means that it is the wrong route
+                # pop the queue if the path was incorrect
+                # path.get()
+                print(node.get_id(), " has been visited already")
+
+            # while path.not_empty:
+            #     n = path.get()
+            #     # node = path.get()
+            #     # node_row, node_col = node.get_location()
+            #     # gameboard.maze_to_array[node_row][node_col] = '.'
+
 
 
 

@@ -19,7 +19,6 @@ class GameBoard(object):
         self.load_map()
         self.maze_to_array = self.create_2d_array()
         self.store_maze_2D()
-        print(self.maze_to_array)
         self.mazeFile.close()
 
     # loads the map of the user's choice
@@ -39,11 +38,11 @@ class GameBoard(object):
     def store_maze_2D(self):
         count_row = 0
         count_col = 0
-        self.mazeFile.seek(0) # reset the file read after
+        self.mazeFile.seek(0)  # reset the file read after
         for line in self.mazeFile.readlines():
             for char in line:
                 if count_col < len(self.maze_to_array[count_row]):
-                    self.maze_to_array[count_row][count_col] = char # store the char at location [count_row][count_col]
+                    self.maze_to_array[count_row][count_col] = char  # store the char at location [count_row][count_col]
                     count_col = count_col + 1
             count_row = count_row + 1
             count_col = 0
@@ -52,13 +51,13 @@ class GameBoard(object):
     def create_2d_array(self):
         count_row = 0
         count_col = 0
-        self.mazeFile.seek(0) # reset the file read after
+        self.mazeFile.seek(0)  # reset the file read after
         for i in self.mazeFile.readlines():
             count_row = count_row + 1
             count_col = 0
             for j in i:
                 count_col = count_col + 1
-        print(count_row, " x ", count_col)
+        print("Maze Dimension:", count_row, " x ", count_col)
         return [[0 for col in range(count_col)] for row in range(count_row)]
 
     def get_row_count(self):
@@ -74,7 +73,6 @@ class GameBoard(object):
             for column in range(len(self.maze_to_array[row])):
                 if self.maze_to_array[row][column] == 'P':
                     return row, column
-
 
     # gets the Location of the Goal Node
     def getGoal(self):
