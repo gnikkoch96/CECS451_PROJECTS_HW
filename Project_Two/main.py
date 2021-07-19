@@ -14,8 +14,6 @@ import gameboard
 from convert_to_file import Solution
 
 # Functions
-
-
 def create_graph():
     # Creates the Graph of the Gameboard
     g = graph.Graph()
@@ -71,4 +69,14 @@ gb = gameboard.GameBoard()
 
 # Creates the graph
 g = create_graph()
-g.graph_summery()
+# print(g.vert_dict[g.get_node('P')].get_node())
+
+# Example of how to replace the ' ' with a '.' in the gameboard then print the solution out to a txt file
+# for node_id in g.get_vertices():
+#     current_char = g.vert_dict[node_id].get_node()
+#     if current_char == ' ':
+#         row, col = g.vert_dict[node_id].get_location()
+#         gb.maze_to_array[row][col] = '.'
+#
+# Solution.create_file(gb, gb.mazeName)
+

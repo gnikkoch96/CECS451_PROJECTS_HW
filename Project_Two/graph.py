@@ -37,12 +37,18 @@ class Graph(object):
     def get_vertices(self):
         return self.vert_dict.keys()  # returns all keys objects as an array
 
+    def get_node(self, node_value):
+        for node_id in self.vert_dict:
+            current_char = self.vert_dict[node_id].get_node()
+            if current_char == node_value:
+                return node_id
+
     def graph_summery(self):
         for n in self.get_vertices():
             vertex_n = self.vert_dict[n]
             for v in vertex_n.get_connections():
                 print(vertex_n.get_node(), '->', v.get_node(), ' : ', vertex_n.get_weight(v))
-                
+
 
 class Vertex:
     def __init__(self, id, node, row, col):
