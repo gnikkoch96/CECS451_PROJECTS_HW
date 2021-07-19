@@ -9,7 +9,6 @@
 #   Version: 1.0.0
 # -----------------------------------------------------------------------
 
-import graph
 import queue
 
 class DFS:
@@ -30,13 +29,16 @@ class DFS:
 
         # visit each node possible from P
         while fringe.not_empty:
-            node = fringe.pop()
+            node = fringe.get()
             if node.get_node() == '.':
                 found_goal = True
                 return node
 
             if node not in visited:
                 visited.add(node)
+                if node.get_node() != 'P':
+                    node_row, node_col = node.get_location()
+                    gameboard.maze_to_array[node_row][node_col] = '.'
 
                 # add adjcent nodes to fringe
                 for adj_node in node.get_connections():

@@ -14,6 +14,9 @@ import gameboard
 from convert_to_file import Solution
 
 # Functions
+from dfs import DFS
+
+
 def create_graph():
     # Creates the Graph of the Gameboard
     g = graph.Graph()
@@ -69,6 +72,8 @@ gb = gameboard.GameBoard()
 
 # Creates the graph
 g = create_graph()
+DFS.depth_first(g, gb)
+Solution.create_file(gb, gb.mazeName)
 # print(g.vert_dict[g.get_node('P')].get_node())
 
 # Example of how to replace the ' ' with a '.' in the gameboard then print the solution out to a txt file
