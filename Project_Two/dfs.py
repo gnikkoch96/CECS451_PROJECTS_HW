@@ -26,39 +26,24 @@ class DFS:
         # creates a visited hashset (prevents duplicates)
         visited = set()
 
-        # path to goal (FIFO)
-        path = []
+        # path to goal (hash map)
+        path = {}
+
 
         # visit each node possible from P
         while fringe.not_empty:
             node = fringe.get()
+
             if node.get_node() == '.':
-                return
+                return path
 
             if node not in visited:
                 visited.add(node)
-                path.append(node)
-                print("Current Node:", node.get_id())
-
-                if node.get_node() != 'P':
-                    node_row, node_col = node.get_location()
-                    gameboard.maze_to_array[node_row][node_col] = '.'
-
+                
                 # add adjcent nodes to fringe
-                for adj_node in node.get_connections():
-                    fringe.put(adj_node)
-
-            else: # if the node was visited, then it means that it is the wrong route
-                # pop the queue if the path was incorrect
-                # path.get()
-                print(node.get_id(), " has been visited already")
-
-            # while path.not_empty:
-            #     n = path.get()
-            #     # node = path.get()
-            #     # node_row, node_col = node.get_location()
-            #     # gameboard.maze_to_array[node_row][node_col] = '.'
-
+                for next in node.get_connections():
+                    fringe.put(next)
+                    path[next] = node
 
 
 

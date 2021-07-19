@@ -73,8 +73,15 @@ gb = gameboard.GameBoard()
 
 # Creates the graph
 g = create_graph()
-DFS.depth_first(g, gb)
+path = DFS.depth_first(g, gb)
+
+# Update gameboard
+for node in path:
+    row, col = node.get_location()
+    gb.maze_to_array[row][col] = '.'
+
 Solution.create_file(gb, gb.mazeName)
+
 
 
 
