@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------
-#   Utilize Breadth First-Search to Find the Path from Point to Goal
+#   Utilize Depth First-Search to Find the Path from Point to Goal
 #   (c) 2021 Rishika Baranawl and Nikko Chan
 #
 #   Date: 07/20/2021

@@ -10,8 +10,28 @@
 # -----------------------------------------------------------------------
 
 import graph
+import queue
 
 # takes in the graph problem to search through
+#use a q 
+class BFS:
+    def bfs(v):
+        queue = []
+        v.parent = v
+        v.distance = 0
+        queue.append('v')
+
+        while not queue.empty():
+            q = queue.pop()
+
+            for neighbour in q.get_connections():
+                if neighbour.parent == None:
+                    neighbour.parent = v
+                    neighbour.distance = q.distance + 1
+                    queue.append(neighbour)
+
+
+
 
 
 
