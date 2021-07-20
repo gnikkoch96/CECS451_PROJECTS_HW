@@ -61,7 +61,22 @@ class DFS:
         # should print to true if the goal has been found
         DFS.dfs_util(p_node, visited, path)
 
-        return path
+        list_path = []
+        for element in list(path.queue):
+            list_path.append(element.get_id())
+
+        # Update gameboard
+        path_cost = 0
+        while not path.empty():
+            node = path.get()
+            path_cost = path_cost + 1
+            row, col = node.get_location()
+            gameboard.maze_to_array[row][col] = '.'
+
+        print("Path Taken: ", list_path)
+        print("Path Cost:", path_cost)
+        print("Number of Nodes Expanded:", len(visited))
+        print("Maximum Fringe:")
 
 
 

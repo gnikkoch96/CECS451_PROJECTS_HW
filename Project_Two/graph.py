@@ -57,6 +57,7 @@ class Vertex:
         self.adjacent = {}
         self.row_location = row
         self.col_location = col
+        self.manhattan_distance = None
 
     # returns the node id when converted to string
     def __str__(self):
@@ -82,3 +83,6 @@ class Vertex:
 
     def get_weight(self, neighbour):
         return self.adjacent[neighbour]
+
+    def set_m_distance(self, distance):
+        self.manhattan_distance = distance
