@@ -10,8 +10,6 @@
 # -----------------------------------------------------------------------
 
 import queue
-from collections import deque
-
 
 class DFS:
     @staticmethod
@@ -61,7 +59,7 @@ class DFS:
         path = queue.LifoQueue()
 
         # should print to true if the goal has been found
-        print(DFS.dfs_util(p_node, visited, path))
+        DFS.dfs_util(p_node, visited, path)
 
         return path
 

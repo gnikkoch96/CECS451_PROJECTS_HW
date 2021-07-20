@@ -29,7 +29,7 @@ def create_graph():
     for node_id in g.get_vertices():
         current_node = g.vert_dict[node_id].get_node()
         if current_node != '%':
-            # we are checking in the order of up, right, down, left
+            # I noticed that depending on which we view first, affects the DFS
 
             # check left
             validate_value = node_id - 1
@@ -38,14 +38,6 @@ def create_graph():
                 left_node = g.vert_dict[left_node_id].get_node()
                 if left_node != '%':
                     g.add_edge(node_id, left_node_id)
-                    
-            # check up
-            validate_value = node_id - gb.get_col_count()
-            if validate_value >= 0:
-                up_node_id = validate_value
-                up_node = g.vert_dict[up_node_id].get_node()
-                if up_node != '%':
-                    g.add_edge(node_id, up_node_id)
 
             # check right
             validate_value = node_id + 1
@@ -55,6 +47,14 @@ def create_graph():
                 if right_node != '%':
                     g.add_edge(node_id, right_node_id)
 
+            # check up
+            validate_value = node_id - gb.get_col_count()
+            if validate_value >= 0:
+                up_node_id = validate_value
+                up_node = g.vert_dict[up_node_id].get_node()
+                if up_node != '%':
+                    g.add_edge(node_id, up_node_id)
+
             # check down
             validate_value = node_id + gb.get_col_count()
             if validate_value < gb.get_row_count() * gb.get_col_count():
@@ -62,12 +62,6 @@ def create_graph():
                 down_node = g.vert_dict[down_node_id].get_node()
                 if down_node != '%':
                     g.add_edge(node_id, down_node_id)
-
-
-
-
-
-
     return g
 
 
@@ -78,18 +72,20 @@ gb = gameboard.GameBoard()
 
 # Creates the graph
 g = create_graph()
-g.graph_summery()
+
+# Perform DFS on the Maze
 path = DFS.depth_first(g, gb)
 
 # Update gameboard
 while not path.empty():
     node = path.get()
-
-    if node.get_node() != 'P':
-        row, col = node.get_location()
-        gb.maze_to_array[row][col] = '.'
+    row, col = node.get_location()
+    gb.maze_to_array[row][col] = '.'
 
 Solution.create_file(gb, gb.mazeName)
+
+
+# Perform A* on the Maze
 
 
 
