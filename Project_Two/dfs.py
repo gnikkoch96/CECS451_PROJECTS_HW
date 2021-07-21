@@ -27,7 +27,6 @@ class DFS:
         #     list_visited_node.append(element.get_id())
         # print("Visited:", list_visited_node)
 
-
         # needs to let previous node know that it was the end, so this node should point back to the node it was
         # called and so forth
         if v.get_node() == '.':

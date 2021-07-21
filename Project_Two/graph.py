@@ -58,6 +58,7 @@ class Vertex:
         self.row_location = row
         self.col_location = col
         self.manhattan_distance = None
+        self.parent = None
 
     # returns the node id when converted to string
     def __str__(self):
