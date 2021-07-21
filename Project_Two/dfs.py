@@ -70,4 +70,4 @@ class DFS:
         print("Path Taken: ", list_path)
         print("Path Cost:", path_cost)
         print("Number of Nodes Expanded:", len(visited))
-        print("Maximum Fringe:", DFS.max_fringe_value)
+        print("Maximum Fringe:", DFS.max_fringe_value, "\n")

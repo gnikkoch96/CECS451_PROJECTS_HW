@@ -34,6 +34,12 @@ class GameBoard(object):
             self.mazeFile = open("mazes\\bigMaze.lay", "r")
             self.mazeName = "bigMaze"
 
+    def reset_map(self):
+        self.mazeFile = open("mazes\\" + self.mazeName + ".lay", "r")
+        self.maze_to_array = self.create_2d_array()
+        self.store_maze_2D()
+        self.mazeFile.close()
+
     # stores the maze in a 2D data structure
     def store_maze_2D(self):
         count_row = 0

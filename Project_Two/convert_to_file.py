@@ -10,12 +10,11 @@
 # -----------------------------------------------------------------------
 import numpy as np
 
-
 class Solution:
     @staticmethod
-    # How to use: Solution.create_file(gameboard, filename) -> creates a .txt file
-    def create_file(gameboard, filename):
+    def append_file(gameboard, filename, search_type):
         list = []
+        list.append("--------------------" + search_type + "--------------------")
         for row in range(len(gameboard.maze_to_array)):
             str_row = ""
             for col in range(len(gameboard.maze_to_array[row])):
@@ -24,7 +23,27 @@ class Solution:
 
         Array = np.array(list)
 
-        # Displaying the array
+        file = open(filename + ".txt", "a")
+
+        # Saving the 2D array in a text file
+        for line in Array:
+            file.write(line + "\n")
+
+        file.close()
+
+    @staticmethod
+    # How to use: Solution.create_file(gameboard, filename) -> creates a .txt file
+    def create_file(gameboard, filename, search_type):
+        list = []
+        list.append("--------------------" + search_type + "--------------------")
+        for row in range(len(gameboard.maze_to_array)):
+            str_row = ""
+            for col in range(len(gameboard.maze_to_array[row])):
+                str_row = str_row + gameboard.maze_to_array[row][col]
+            list.append(str_row)
+
+        Array = np.array(list)
+
         file = open(filename + ".txt", "w+")
 
         # Saving the 2D array in a text file

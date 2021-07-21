@@ -75,13 +75,16 @@ gb = gameboard.GameBoard()
 g = create_graph()
 
 # Perform DFS on the Maze
+print("Performing Depth-First Search---------------------")
 DFS.depth_first(g, gb)
+Solution.create_file(gb, gb.mazeName, "Depth-First Search")
 
 # Perform BFS on the Maze
-# BFS.bfs(g, gb)
-Solution.create_file(gb, gb.mazeName)
+gb.reset_map() # resets the gameboard
+print("Performing Breadth-First Search-------------------")
+BFS.bfs(g, gb)
+Solution.append_file(gb, gb.mazeName, "Breadth-First Search")
 
-# Perform A* on the Maze
 
 
 

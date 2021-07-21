@@ -80,4 +80,4 @@ class BFS:
         print("Path Taken: ", list_path)
         print("Path Cost:", path_cost)
         print("Number of Nodes Expanded:", len(visited))
-        print("Maximum Fringe:", max_fringe_value)
+        print("Maximum Fringe:", max_fringe_value, "\n")
