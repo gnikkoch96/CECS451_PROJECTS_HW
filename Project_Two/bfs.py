@@ -14,6 +14,7 @@ import queue
 
 
 class BFS:
+
     @staticmethod
     def bfs(graph, gameboard):
         # frontier/fringe (FIFO)
@@ -30,9 +31,14 @@ class BFS:
         # path to goal (LIFO Queue)
         path = queue.LifoQueue()
 
+        max_fringe_value = 0
+
         # perform bfs
         found = False  # used to tell if the solution was found or not
         while not fringe.empty():
+            if fringe.__sizeof__() > max_fringe_value:
+                max_fringe_value = fringe.__sizeof__()
+
             node = fringe.get()
 
             if node.get_node() == '.':  # goal node
@@ -42,7 +48,7 @@ class BFS:
                 while node.parent != '':  # start goal should have None
                     path.put(node)
                     node = node.parent
-                    print(node.get_id(), " parent: ", node.parent)
+                    # print(node.get_id(), " parent: ", node.parent)
                 break
 
             else:
@@ -58,11 +64,20 @@ class BFS:
         list_path = []
         for element in list(path.queue):
             list_path.append(element.get_id())
+        list_path.append(graph.vert_dict[graph.get_node('P')].get_id())
+        list_path.reverse()
 
         # Update gameboard
-        path_cost = 0
+        path_cost = 1 # including the cost from the initial node to the second node
         while not path.empty():
             node = path.get()
             path_cost = path_cost + 1
             row, col = node.get_location()
             gameboard.maze_to_array[row][col] = '.'
+
+
+        # output
+        print("Path Taken: ", list_path)
+        print("Path Cost:", path_cost)
+        print("Number of Nodes Expanded:", len(visited))
+        print("Maximum Fringe:", max_fringe_value)

@@ -12,6 +12,8 @@
 import queue
 
 class DFS:
+    max_fringe_value = 0
+
     @staticmethod
     def dfs_util(v, visited, path):
         visited.add(v)
