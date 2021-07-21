@@ -75,8 +75,10 @@ gb = gameboard.GameBoard()
 g = create_graph()
 
 # Perform DFS on the Maze
-# path = DFS.depth_first(g, gb)
-BFS.bfs(g, gb)
+DFS.depth_first(g, gb)
+
+# Perform BFS on the Maze
+# BFS.bfs(g, gb)
 Solution.create_file(gb, gb.mazeName)
 
 # Perform A* on the Maze

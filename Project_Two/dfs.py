@@ -11,30 +11,23 @@
 
 import queue
 
+
 class DFS:
+    # counts the max fringe value
     max_fringe_value = 0
 
     @staticmethod
     def dfs_util(v, visited, path):
         visited.add(v)
 
-        # list_path = list(path.queue)
-        # list_node = []
-        # for element in list_path:
-        #     list_node.append(element.get_id())
-        # print("List:", list_node)
-
-        # list_visited_node = []
-        # for element in visited:
-        #     list_visited_node.append(element.get_id())
-        # print("Visited:", list_visited_node)
-
         # needs to let previous node know that it was the end, so this node should point back to the node it was
         # called and so forth
         if v.get_node() == '.':
             return True
 
+        # checks the neighbours of this node
         for neighbour in v.get_connections():
+            DFS.max_fringe_value += 1
             if neighbour not in visited:
                 path.put(neighbour)
                 found = DFS.dfs_util(neighbour, visited, path)
@@ -42,7 +35,7 @@ class DFS:
                 # if the goal has been found, then keep returning v otherwise it will get removed
                 if found:
                     return True
-                else: # remove it from queue if it doesn't find the result
+                else:  # remove it from queue if it doesn't find the result
                     path.get()
 
         return False
@@ -77,9 +70,4 @@ class DFS:
         print("Path Taken: ", list_path)
         print("Path Cost:", path_cost)
         print("Number of Nodes Expanded:", len(visited))
-        print("Maximum Fringe:")
-
-
-
-
-
+        print("Maximum Fringe:", DFS.max_fringe_value)
