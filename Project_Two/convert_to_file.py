@@ -26,8 +26,14 @@ class Solution:
         file = open(filename + ".txt", "a")
 
         # Saving the 2D array in a text file
+        output_maze = ""
         for line in Array:
             file.write(line + "\n")
+            output_maze += line + '\n'
+
+        print(output_maze)
+
+
 
         file.close()
 
@@ -47,7 +53,10 @@ class Solution:
         file = open(filename + ".txt", "w+")
 
         # Saving the 2D array in a text file
+        output_maze = ""
         for line in Array:
             file.write(line + "\n")
+            output_maze += line + '\n'
 
+        print(output_maze)
         file.close()

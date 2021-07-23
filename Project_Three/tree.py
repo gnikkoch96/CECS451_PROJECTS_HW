@@ -12,9 +12,10 @@
 class Tree:
     def __init__(self):
         self.node_dict = {}
-        self.num_node = 0  
+        self.num_node = 0
         self.root = None
 
+    # adds a node while connecting current node (node_id) to a parent (parent_id)
     def add_node(self, node_id, parent_id):
         # if there are no nodes currently, then that means it is the root node
         if self.num_node == 0:
@@ -48,6 +49,7 @@ class Tree:
         print(root.get_id()) # prints the node once it reaches the end
         return
 
+    # depth-first search traversal
     def dfs_traversal(self):
         self.dfs_util(self.root)
 
