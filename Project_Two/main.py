@@ -65,7 +65,6 @@ def create_graph():
                     g.add_edge(node_id, left_node_id)
     return g
 
-
 # Main
 
 # Gameboard class is used to convert the maze file into a 2d array
