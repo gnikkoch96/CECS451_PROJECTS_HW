@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------
 #   Constructs a graph data structure
-#   (c) 2021 Rishika Baranawl and Nikko Chan
+#   (c) 2021 Rishika Baranwal and Nikko Chan
 #
 #   Date: 07/20/2021
 #   Name(s): Rishika Baranwal and Nikko Chan

@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------
 #   Project 2: Maze Search
 #   Description: Choosing a maze, we must utilize A*, BFS, and DFS to find the path from starting node to goal node
-#   (c) 2021 Rishika Baranawl and Nikko Chan
+#   (c) 2021 Rishika Baranwal and Nikko Chan
 #
 #   Date: 07/20/2021
 #   Name(s): Rishika Baranwal and Nikko Chan

@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------
 #   Utilize Breadth First-Search to Find the Path from Point to Goal
-#   (c) 2021 Rishika Baranawl and Nikko Chan
+#   (c) 2021 Rishika Baranwal and Nikko Chan
 #
 #   Date: 07/20/2021
 #   Name(s): Rishika Baranwal and Nikko Chan
