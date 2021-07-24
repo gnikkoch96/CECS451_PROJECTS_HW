@@ -34,6 +34,7 @@ class GameBoard(object):
             self.mazeFile = open("mazes\\bigMaze.lay", "r")
             self.mazeName = "bigMaze"
 
+    # resets the map
     def reset_map(self):
         self.mazeFile = open("mazes\\" + self.mazeName + ".lay", "r")
         self.maze_to_array = self.create_2d_array()

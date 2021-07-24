@@ -13,18 +13,16 @@
 # Graph Class
 class Graph(object):
     def __init__(self):
-        self.vert_dict = {}  # example: key = 1, value = " "
+        self.vert_dict = {}
         self.num_vertices = 0  # this will be the id for each node since repeating characters are possible
 
     # id was added to give same characters a unique identifier
     def add_vertex(self, id, node, row, col):
         new_v = Vertex(id, node, row, col)
-        self.vert_dict[id] = new_v  # NN: key = id , value = new_v
+        self.vert_dict[id] = new_v  # key = id , value = new_v
         self.num_vertices = self.num_vertices + 1
 
     def add_edge(self, from_edge, to_edge, weight=1):
-        # if it isn't currently on the dictionary, then add it
-
         if from_edge not in self.vert_dict:
             print("Error: From_Edge does not exist")
 

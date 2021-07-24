@@ -11,7 +11,9 @@
 import numpy as np
 
 class Solution:
+
     @staticmethod
+    # appends the board to the text file if the file already exists
     def append_file(gameboard, filename, search_type):
         list = []
         list.append("--------------------" + search_type + "--------------------")
@@ -32,13 +34,11 @@ class Solution:
             output_maze += line + '\n'
 
         print(output_maze)
-
-
-
         file.close()
 
     @staticmethod
     # How to use: Solution.create_file(gameboard, filename) -> creates a .txt file
+    # creates the txt file
     def create_file(gameboard, filename, search_type):
         list = []
         list.append("--------------------" + search_type + "--------------------")
