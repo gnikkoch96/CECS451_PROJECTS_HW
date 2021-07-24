@@ -39,6 +39,15 @@ class Tree:
     def get_nodes(self):
         return self.node_dict.keys()
 
+    def minimax(self):
+        pass
+
+    def max_value(self):
+        pass
+
+    def min_value(self):
+        pass
+
     def dfs_util(self, root):
         for item in root.get_children_node():
             node = self.node_dict[item]

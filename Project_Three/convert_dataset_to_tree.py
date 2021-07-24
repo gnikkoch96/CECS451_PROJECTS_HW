@@ -11,7 +11,8 @@
 
 from tree import Tree
 from tree import Node
-import csv # comma separated value
+import csv  # comma separated value
+
 
 class DataTree:
     # dataset is a file of the dataset (csv format)
@@ -28,21 +29,19 @@ class DataTree:
             line_count = 0
             for row in csv_reader:
                 # columns are read as row[i] where i is the ith column while row represents the line from the dataset
-                if line_count == 0: # initialize the root (because it has different column counts)
-                    # print("Label:", row[0])
-                    # print("Parent:", row[1])
-                    # print("Children", row[2])
-                    # removes the whitespace
-                    self.tree.add_node(row[2].replace(" ", ""), row[1].replace(" ", "")) # child, parent
+                if line_count == 0:  # initialize the root (because it has different column counts)
+                    root_parent = row[1].replace(" ", "")  # removes the whitespace
+                    root_a = row[2].replace(" ", "")[0:row[2].find("=") - 1]  # doesn't include the "=0" part
+
+                    self.tree.add_node(root_a, root_parent)  # child, parent
                 else:
-                    # print("Label:", row[0])
-                    # print("Parent:", row[1])
-                    # print("Children #1:", row[2])
-                    # print("Children #2:", row[3])
-                    # print("Children #3:", row[4])
-                    self.tree.add_node(row[2].replace(" ", ""), row[1])
-                    self.tree.add_node(row[3].replace(" ", ""), row[1])
-                    self.tree.add_node(row[4].replace(" ", ""), row[1])
+                    parent_node = row[1].replace(" ", "")[0:row[2].find("=") - 1]
+                    child_node1 = row[2].replace(" ", "")[0:row[2].find("=") - 1]
+                    child_node2 = row[3].replace(" ", "")[0:row[2].find("=") - 1]
+                    child_node3 = row[4].replace(" ", "")[0:row[2].find("=") - 1]
 
+                    self.tree.add_node(child_node1, parent_node)
+                    self.tree.add_node(child_node2, parent_node)
+                    self.tree.add_node(child_node3, parent_node)
 
-
+                line_count += 1
