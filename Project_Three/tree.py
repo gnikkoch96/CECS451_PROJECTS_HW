@@ -39,13 +39,24 @@ class Tree:
     def get_nodes(self):
         return self.node_dict.keys()
 
-    def minimax(self):
+    # is_prune is used to tell if we want to prune or not
+    def minimax(self, state, depth, is_prune):
+        # start with max first
+        self.max_value(state, float('-inf'), float('+inf'), depth, is_prune)
+        
+
+    def max_value(self, state, a, b, depth, is_prune):
+        if depth == 0:
+            return state
+
+        for child in state.get_children_nodes():
+            a = max(a, self.min_value(child, a, b, depth - 1, is_prune))
+            if a >= b:  # this is the cutoff point
+                return a
+
         pass
 
-    def max_value(self):
-        pass
-
-    def min_value(self):
+    def min_value(self, state, alpha, beta, depth, is_prune):
         pass
 
     def dfs_util(self, root):
