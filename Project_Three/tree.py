@@ -16,15 +16,15 @@ class Tree:
         self.root = None
 
     # adds a node while connecting current node (node_id) to a parent (parent_id)
-    def add_node(self, node_id, parent_id):
+    def add_node(self, node_id, node_value, parent_id):
         # if there are no nodes currently, then that means it is the root node
         if self.num_node == 0:
             parent = None
-            new_v = Node(node_id, parent)
+            new_v = Node(node_id, node_value, parent)
             self.root = new_v
         else:
             parent = self.node_dict[parent_id]
-            new_v = Node(node_id, parent)
+            new_v = Node(node_id, node_value, parent)
             parent.add_child(node_id, new_v)
 
         self.node_dict[node_id] = new_v
@@ -39,34 +39,74 @@ class Tree:
     def get_nodes(self):
         return self.node_dict.keys()
 
-    # is_prune is used to tell if we want to prune or not
-    def minimax(self, state, depth, is_prune):
+    # is_prune is used to tell if we want to prune or not (used in the last part)
+    def minimax(self, current_node, depth, is_prune):
         # start with max first
-        self.max_value(state, float('-inf'), float('+inf'), depth, is_prune)
-        
+        if is_prune:
+            self.max_value_prune(current_node, float('-inf'), float('+inf'), depth)
+        else:
+            self.max_value(current_node, depth)
 
-    def max_value(self, state, a, b, depth, is_prune):
+    def max_value(self, current_node, depth):
         if depth == 0:
-            return state
+            return current_node
 
-        for child in state.get_children_nodes():
-            a = max(a, self.min_value(child, a, b, depth - 1, is_prune))
+        for child in current_node.get_children_nodes():
+            print(current_node.get_children_nodes())
+
+            child_node = current_node.child_dict[child]
+            a = max(a, self.min_value(child_node, a, b, depth - 1, is_prune))
             if a >= b:  # this is the cutoff point
                 return a
+        return a
 
-        pass
+    def min_value(self, current_node, a, b, depth, is_prune):
+        if depth == 0:
+            return current_node
 
-    def min_value(self, state, alpha, beta, depth, is_prune):
-        pass
+        for child in current_node.get_children_nodes():
+            print(current_node.get_children_nodes())
+
+            child_node = current_node.child_dict[child]
+            b = min(b, self.max_value(child_node, a, b, depth - 1, is_prune))
+            if b <= a:
+                return b
+        return b
+
+    # prune version of the max and min value functions
+    def max_value_prune(self, current_node, a, b, depth):
+        if depth == 0:
+            return current_node
+
+        for child in current_node.get_children_nodes():
+            child_node = current_node.child_dict[child]
+            a = max(a, self.min_value(child_node, a, b, depth - 1, is_prune))
+            print(a)
+            if a >= b:  # this is the cutoff point
+                return a
+        return a
+
+    def min_value_prune(self, current_node, a, b, depth):
+        if depth == 0:
+            return current_node
+
+        for child in current_node.get_children_nodes():
+            child_node = current_node.child_dict[child]
+            b = min(b, self.max_value(child_node, a, b, depth - 1, is_prune))
+            print(b)
+            if b <= a:
+                return b
+        return b
+
 
     def dfs_util(self, root):
-        for item in root.get_children_node():
+        for item in root.get_children_nodes():
             node = self.node_dict[item]
             if not node.visited:
                 node.visited = True
                 self.dfs_util(node)
 
-        print(root.get_id()) # prints the node once it reaches the end
+        print(root.get_id())  # prints the node once it reaches the end
         return
 
     # depth-first search traversal
@@ -77,20 +117,25 @@ class Tree:
 class Node:
 
     # parent_id is null if it is the root node
-    def __init__(self, node_id, parent):
+    # node_value represents the value of the node from the dataset
+    def __init__(self, node_id, node_value, parent):
         self.id = node_id
         self.parent = parent
+        self.value = node_value
         self.visited = False  # is used to prevent looping
         self.child_dict = {}  # stores a dictionary of all the children of this node (aka successors)
 
     def add_child(self, child_id, child_node):
         self.child_dict[child_id] = child_node
 
-    def get_children_node(self):
+    def get_children_nodes(self):
         return self.child_dict.keys()
 
     def get_parent(self):
         return self.parent
+
+    def get_value(self):
+        return self.value
 
     def get_id(self):
         return self.id

@@ -19,11 +19,9 @@ class DataTree:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
         self.tree = None
+        self.depth = 0
         self.parse_dataset()
 
-        # will be used in the minimax equation (note that this indexing normally, so adjust value accordingly which
-        # is -1)
-        self.depth = 0
 
     def parse_dataset(self):
         self.tree = Tree()
@@ -31,20 +29,29 @@ class DataTree:
         with open(self.dataset_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
-                # columns are read as row[i] where i is the ith column while row represents the line from the dataset
-                if self.depth == 0:  # initialize the root (because it has different column counts)
+                # NN: columns are read as row[i]
+                if self.depth == 0:  # initialize the root
                     root_parent = row[1].replace(" ", "")  # removes the whitespace
-                    root_a = row[2].replace(" ", "")[0:row[2].find("=") - 1]  # doesn't include the "=0" part
 
-                    self.tree.add_node(root_a, root_parent)  # child, parent
+                    root_a = row[2].replace(" ", "")[0:row[2].find("=") - 1]  # removes "=0" part into a substring
+                    root_value = row[2].replace(" ", "")[row[2].find("="): len(row[2])] # stores the value
+
+                    self.tree.add_node(root_a, root_value, root_parent)  # child, parent
                 else:
                     parent_node = row[1].replace(" ", "")[0:row[2].find("=") - 1]
-                    child_node1 = row[2].replace(" ", "")[0:row[2].find("=") - 1]
-                    child_node2 = row[3].replace(" ", "")[0:row[2].find("=") - 1]
-                    child_node3 = row[4].replace(" ", "")[0:row[2].find("=") - 1]
 
-                    self.tree.add_node(child_node1, parent_node)
-                    self.tree.add_node(child_node2, parent_node)
-                    self.tree.add_node(child_node3, parent_node)
+                    child_node1 = row[2].replace(" ", "")[0:row[2].find("=") - 1]
+                    cn1_value = row[2].replace(" ", "")[row[2].find("="): len(row[2])]
+
+                    child_node2 = row[3].replace(" ", "")[0:row[2].find("=") - 1]
+                    cn2_value = row[3].replace(" ", "")[row[3].find("="): len(row[3])]
+
+                    child_node3 = row[4].replace(" ", "")[0:row[2].find("=") - 1]
+                    cn3_value = row[4].replace(" ", "")[row[4].find("="): len(row[4])]
+
+                    # add values
+                    self.tree.add_node(child_node1, cn1_value, parent_node)
+                    self.tree.add_node(child_node2, cn2_value, parent_node)
+                    self.tree.add_node(child_node3, cn3_value, parent_node)
 
                 self.depth += 1
