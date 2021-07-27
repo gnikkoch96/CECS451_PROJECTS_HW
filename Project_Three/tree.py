@@ -43,7 +43,7 @@ class Tree:
     def minimax(self, current_node, depth, is_prune):
         # start with max first
         if is_prune:
-            self.max_value_prune(current_node, float('-inf'), float('+inf'), depth)
+            self.max_value_prune(current_node, float('-inf'), float('inf'), depth)
         else:
             self.max_value(current_node, depth)
 
@@ -51,27 +51,38 @@ class Tree:
         if depth == 0:
             return current_node
 
+        maxEval = float('-inf')  # stores a negative infinity (anything is greater than negative infinity)
+
         for child in current_node.get_children_nodes():
-            print(current_node.get_children_nodes())
+            child_node = self.node_dict[child]
 
-            child_node = current_node.child_dict[child]
-            a = max(a, self.min_value(child_node, a, b, depth - 1, is_prune))
-            if a >= b:  # this is the cutoff point
-                return a
-        return a
+            e = self.min_value(child_node, depth - 1)
+            print(child_node.get_id())
+            print('Type e:', type(e))
+            print("E:", e)
+            maxEval = max(maxEval, e.get_value())
 
-    def min_value(self, current_node, a, b, depth, is_prune):
+
+        print("Max Eval: ", maxEval)
+        return maxEval
+
+    def min_value(self, current_node, depth):
         if depth == 0:
             return current_node
 
-        for child in current_node.get_children_nodes():
-            print(current_node.get_children_nodes())
+        minEval = float('inf')  # stores a positive infinity (anything is less than positive infinity)
 
-            child_node = current_node.child_dict[child]
-            b = min(b, self.max_value(child_node, a, b, depth - 1, is_prune))
-            if b <= a:
-                return b
-        return b
+        for child in current_node.get_children_nodes():
+            child_node = self.node_dict[child]
+
+            e = self.max_value(child_node, depth - 1)
+            print(child_node.get_id())
+            print('Type e:', type(e))
+            print("E:", e)
+            minEval = min(minEval, e.get_value())
+
+        print("Min Eval: ", minEval)
+        return minEval
 
     # prune version of the max and min value functions
     def max_value_prune(self, current_node, a, b, depth):
@@ -80,7 +91,7 @@ class Tree:
 
         for child in current_node.get_children_nodes():
             child_node = current_node.child_dict[child]
-            a = max(a, self.min_value(child_node, a, b, depth - 1, is_prune))
+            a = max(a, self.min_value(child_node, a, b, depth - 1))
             print(a)
             if a >= b:  # this is the cutoff point
                 return a
@@ -92,12 +103,11 @@ class Tree:
 
         for child in current_node.get_children_nodes():
             child_node = current_node.child_dict[child]
-            b = min(b, self.max_value(child_node, a, b, depth - 1, is_prune))
+            b = min(b, self.max_value(child_node, a, b, depth - 1))
             print(b)
             if b <= a:
                 return b
         return b
-
 
     def dfs_util(self, root):
         for item in root.get_children_nodes():
@@ -121,7 +131,7 @@ class Node:
     def __init__(self, node_id, node_value, parent):
         self.id = node_id
         self.parent = parent
-        self.value = node_value
+        self.value = float(node_value)
         self.visited = False  # is used to prevent looping
         self.child_dict = {}  # stores a dictionary of all the children of this node (aka successors)
 

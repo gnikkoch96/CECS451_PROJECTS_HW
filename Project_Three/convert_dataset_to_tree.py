@@ -19,7 +19,6 @@ class DataTree:
     def __init__(self, dataset_path):
         self.dataset_path = dataset_path
         self.tree = None
-        self.depth = 0
         self.parse_dataset()
 
 
@@ -28,9 +27,11 @@ class DataTree:
 
         with open(self.dataset_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
+
+            line_count = 0
             for row in csv_reader:
                 # NN: columns are read as row[i]
-                if self.depth == 0:  # initialize the root
+                if line_count == 0:  # initialize the root
                     root_parent = row[1].replace(" ", "")  # removes the whitespace
 
                     root_a = row[2].replace(" ", "")[0:row[2].find("=") - 1]  # removes "=0" part into a substring
@@ -54,4 +55,4 @@ class DataTree:
                     self.tree.add_node(child_node2, cn2_value, parent_node)
                     self.tree.add_node(child_node3, cn3_value, parent_node)
 
-                self.depth += 1
+                line_count += 1

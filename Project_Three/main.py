@@ -7,7 +7,8 @@ if __name__ == '__main__':
     dataset_path = "dataset\\tree1.txt"
     dt = DataTree(dataset_path)
 
-    root_node = dt.tree.node_dict[dt.tree.root.get_id()]
+    root_node = dt.tree.root
 
-    dt.tree.minimax(root_node, dt.depth, False)
-    # tree.tree.dfs_traversal()
+    # for depth, you have to subtract by one because of computer indexing
+    dt.tree.minimax(root_node, 2, False)
+
