@@ -49,40 +49,36 @@ class Tree:
 
     def max_value(self, current_node, depth):
         if depth == 0:
-            return current_node
+            return current_node.get_value()
 
-        maxEval = float('-inf')  # stores a negative infinity (anything is greater than negative infinity)
+        max_eval = float('-inf')
 
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
 
             e = self.min_value(child_node, depth - 1)
-            print(child_node.get_id())
-            print('Type e:', type(e))
-            print("E:", e)
-            maxEval = max(maxEval, e.get_value())
+            max_eval = max(max_eval, e)
+            current_node.value = max_eval
 
+        print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
+        return max_eval
 
-        print("Max Eval: ", maxEval)
-        return maxEval
 
     def min_value(self, current_node, depth):
         if depth == 0:
-            return current_node
+            return current_node.get_value()
 
-        minEval = float('inf')  # stores a positive infinity (anything is less than positive infinity)
+        min_eval = float('inf')
 
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
 
             e = self.max_value(child_node, depth - 1)
-            print(child_node.get_id())
-            print('Type e:', type(e))
-            print("E:", e)
-            minEval = min(minEval, e.get_value())
+            min_eval = min(min_eval, e)
+            current_node.value = min_eval
 
-        print("Min Eval: ", minEval)
-        return minEval
+        print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
+        return min_eval
 
     # prune version of the max and min value functions
     def max_value_prune(self, current_node, a, b, depth):
