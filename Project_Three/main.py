@@ -19,6 +19,7 @@ if __name__ == '__main__':
         for node_key in dt.tree.get_nodes():
             node = dt.tree.node_dict[node_key]
             print(node.get_id(), "[", node.get_value(), "]")
+
     elif user_input == 2: # perform alpha-beta pruning
         # for depth, you have to subtract by one because of computer indexing
         dt.tree.minimax(root_node, 2, True)

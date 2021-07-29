@@ -43,6 +43,7 @@ class Tree:
     def minimax(self, current_node, depth, is_prune):
         # start with max first
         if is_prune:
+            current_node.pruned = False
             self.max_value_prune(current_node, float('-inf'), float('inf'), depth)
         else:
             self.max_value(current_node, depth)
@@ -84,26 +85,33 @@ class Tree:
     # prune version of the max and min value functions
     def max_value_prune(self, current_node, a, b, depth):
         if depth == 0:
-            return current_node
+            return current_node.get_value()
 
         for child in current_node.get_children_nodes():
             child_node = current_node.child_dict[child]
-            a = max(a, self.min_value(child_node, a, b, depth - 1))
-            print(a)
-            if a >= b:  # this is the cutoff point
+            child_node.pruned = False
+
+            a = max(a, self.min_value_prune(child_node, a, b, depth - 1))
+            current_node.value = a
+
+            if b <= a:  # this is the cutoff point
                 return a
         return a
 
     def min_value_prune(self, current_node, a, b, depth):
         if depth == 0:
-            return current_node
+            return current_node.get_value()
 
         for child in current_node.get_children_nodes():
             child_node = current_node.child_dict[child]
-            b = min(b, self.max_value(child_node, a, b, depth - 1))
-            print(b)
+            child_node.pruned = False
+
+            b = min(b, self.max_value_prune(child_node, a, b, depth - 1))
+            current_node.value = b
+
             if b <= a:
                 return b
+
         return b
 
     def dfs_util(self, root):
@@ -129,7 +137,7 @@ class Node:
         self.id = node_id
         self.parent = parent
         self.value = float(node_value)
-        self.pruned = True    # if visited, then this will turn into false
+        self.pruned = True  # if visited, then this will turn into false
         self.visited = False  # is used to prevent looping
         self.child_dict = {}  # stores a dictionary of all the children of this node (aka successors)
 
