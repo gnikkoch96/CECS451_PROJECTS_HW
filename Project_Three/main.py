@@ -38,6 +38,7 @@ if __name__ == '__main__':
         # print out all the nodes along with their values and their pruned status
         for node_key in dt.tree.get_nodes():
             node = dt.tree.node_dict[node_key]
-            print(node.get_id(), "[", node.get_value(), "], Pruned Status: ", node.pruned)
+            # print(node.get_id(), "[", node.get_value(), "], Pruned Status: ", node.pruned)
+            print(node.get_id(), "[", node.alpha, ',', node.beta, "], Pruned Status: ", node.pruned)
     else: # exit the program
         print("Exited Program...")
