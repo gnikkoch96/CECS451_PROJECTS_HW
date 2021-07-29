@@ -14,7 +14,8 @@ from convert_dataset_to_tree import DataTree
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    dataset_path = "dataset\\tree1.txt"
+    # dataset_path = "dataset\\tree1.txt"
+    dataset_path = "dataset\\practice_set.txt"
     dt = DataTree(dataset_path)
 
     root_node = dt.tree.root

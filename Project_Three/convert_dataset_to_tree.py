@@ -21,7 +21,6 @@ class DataTree:
         self.tree = None
         self.parse_dataset()
 
-
     def parse_dataset(self):
         self.tree = Tree()
 
@@ -38,21 +37,14 @@ class DataTree:
                     root_value = row[2].replace(" ", "")[row[2].find("="): len(row[2])] # stores the value
 
                     self.tree.add_node(root_a, root_value, root_parent)  # child, parent
-                else:
+                else:  # parse everything else
                     parent_node = row[1].replace(" ", "")[0:row[2].find("=") - 1]
 
-                    child_node1 = row[2].replace(" ", "")[0:row[2].find("=") - 1]
-                    cn1_value = row[2].replace(" ", "")[row[2].find("="): len(row[2])]
+                    for col in range(2, len(row)):
+                        child_node = row[col].replace(" ", "")[0:row[col].find("=") - 1]
+                        cn_value = row[col].replace(" ", "")[row[col].find("="): len(row[col])]
 
-                    child_node2 = row[3].replace(" ", "")[0:row[2].find("=") - 1]
-                    cn2_value = row[3].replace(" ", "")[row[3].find("="): len(row[3])]
-
-                    child_node3 = row[4].replace(" ", "")[0:row[2].find("=") - 1]
-                    cn3_value = row[4].replace(" ", "")[row[4].find("="): len(row[4])]
-
-                    # add values
-                    self.tree.add_node(child_node1, cn1_value, parent_node)
-                    self.tree.add_node(child_node2, cn2_value, parent_node)
-                    self.tree.add_node(child_node3, cn3_value, parent_node)
+                        # add values to the tree
+                        self.tree.add_node(child_node, cn_value, parent_node)
 
                 line_count += 1
