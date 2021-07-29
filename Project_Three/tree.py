@@ -53,6 +53,7 @@ class Tree:
 
         max_eval = float('-inf')
 
+        # visit each child of the current node to find the maximum between their values
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
 
@@ -60,9 +61,8 @@ class Tree:
             max_eval = max(max_eval, e)
             current_node.value = max_eval
 
-        print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
+        # print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
         return max_eval
-
 
     def min_value(self, current_node, depth):
         if depth == 0:
@@ -70,6 +70,7 @@ class Tree:
 
         min_eval = float('inf')
 
+        # visit each child of the current node to find the minimum between their values
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
 
@@ -77,7 +78,7 @@ class Tree:
             min_eval = min(min_eval, e)
             current_node.value = min_eval
 
-        print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
+        # print("Node: ", current_node.get_id(), "[", current_node.get_value(), "]")
         return min_eval
 
     # prune version of the max and min value functions
@@ -128,6 +129,7 @@ class Node:
         self.id = node_id
         self.parent = parent
         self.value = float(node_value)
+        self.pruned = True    # if visited, then this will turn into false
         self.visited = False  # is used to prevent looping
         self.child_dict = {}  # stores a dictionary of all the children of this node (aka successors)
 
