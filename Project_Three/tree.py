@@ -27,7 +27,6 @@ class Tree:
             new_v = Node(node_id, node_value, parent)
             parent.add_child(node_id, new_v)
 
-        print(self.node_dict)
         self.node_dict[node_id] = new_v
         self.num_node += 1
 
@@ -50,6 +49,10 @@ class Tree:
             self.max_value(current_node, depth)
 
     def max_value(self, current_node, depth):
+        # print("(Max-Level) Current Node:", current_node.get_id())
+        # print(current_node.get_children_nodes())
+        # print()
+
         if depth == 0:
             return current_node.get_value()
 
@@ -58,7 +61,6 @@ class Tree:
         # visit each child of the current node to find the maximum between their values
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
-
             e = self.min_value(child_node, depth - 1)
             max_eval = max(max_eval, e)
             current_node.value = max_eval
@@ -67,6 +69,10 @@ class Tree:
         return max_eval
 
     def min_value(self, current_node, depth):
+        # print("(Min-Level) Current Node:", current_node.get_id())
+        # print(current_node.get_children_nodes())
+        # print()
+
         if depth == 0:
             return current_node.get_value()
 
@@ -75,7 +81,6 @@ class Tree:
         # visit each child of the current node to find the minimum between their values
         for child in current_node.get_children_nodes():
             child_node = self.node_dict[child]
-
             e = self.max_value(child_node, depth - 1)
             min_eval = min(min_eval, e)
             current_node.value = min_eval

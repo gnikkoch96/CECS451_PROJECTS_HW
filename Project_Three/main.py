@@ -18,28 +18,31 @@ if __name__ == '__main__':
     dataset_path = "dataset\\tree2.txt"
     # dataset_path = "dataset\\practice_set.txt"
     dt = DataTree(dataset_path)
-
+    depth = 4  # place the depth value here (remember that tree1 and tree2 have different depths i.e. put 2 for tree1 and 4 for tree 2)
     root_node = dt.tree.root
 
     user_input = int(input("Which algorithm do you want to perform?\n1.Minimax\n2.Alpha-Beta Pruning\n3.Exit\nChoice:"))
 
     if user_input == 1: # perform minimax (w/out pruning)
         # for depth, you have to subtract by one because of computer indexing
-        dt.tree.minimax(root_node, 2, False)
+        dt.tree.minimax(root_node, depth, False)
 
         # print out all the nodes along with their values
         for node_key in dt.tree.get_nodes():
             node = dt.tree.node_dict[node_key]
             print(node.get_id(), "[", node.get_value(), "]")
-
+            # print('{kg:<{kg_width}}{between}{lb:>{lb_width}}'.format(
+            #     kg=kg, kg_width=len('Kilograms'),
+            #     between=between,
+            #     lb=lb, lb_width=len('Pounds')))
     elif user_input == 2: # perform alpha-beta pruning
         # for depth, you have to subtract by one because of computer indexing
-        dt.tree.minimax(root_node, 2, True)
+        dt.tree.minimax(root_node, depth, True)
 
         # print out all the nodes along with their values and their pruned status
         for node_key in dt.tree.get_nodes():
             node = dt.tree.node_dict[node_key]
             # print(node.get_id(), "[", node.get_value(), "], Pruned Status: ", node.pruned)
-            print(node.get_id(), "[", node.alpha, ',', node.beta, "], Pruned Status: ", node.pruned)
+            print(node.get_id(), "(", node.value, "), [", node.alpha, ',', node.beta, "], Pruned Status: ", node.pruned)
     else: # exit the program
         print("Exited Program...")
