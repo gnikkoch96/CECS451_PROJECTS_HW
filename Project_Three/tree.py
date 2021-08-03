@@ -27,6 +27,7 @@ class Tree:
             new_v = Node(node_id, node_value, parent)
             parent.add_child(node_id, new_v)
 
+        print(self.node_dict)
         self.node_dict[node_id] = new_v
         self.num_node += 1
 
