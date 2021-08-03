@@ -31,18 +31,23 @@ class DataTree:
             for row in csv_reader:
                 # NN: columns are read as row[i]
                 if line_count == 0:  # initialize the root
-                    root_parent = row[1].replace(" ", "")  # removes the whitespace
+                    root_parent = " "
+                    # root_parent = row[1].replace(" ", "")  # removes the whitespace
 
-                    root_a = row[2].replace(" ", "")[0:row[2].find("=") - 1]  # removes "=0" part into a substring
-                    root_value = row[2].replace(" ", "")[row[2].find("="): len(row[2])] # stores the value
+                    adj_child_value = row[2].replace(" ", "")
+                    root_node = adj_child_value[0:adj_child_value.find("=")]  # removes "=0" part into a substring
+                    root_value = adj_child_value[adj_child_value.find("=") + 1: len(adj_child_value)]  # stores the value
 
-                    self.tree.add_node(root_a, root_value, root_parent)  # child, parent
+                    self.tree.add_node(root_node, root_value, root_parent)  # child, parent
                 else:  # parse everything else
-                    parent_node = row[1].replace(" ", "")[0:row[2].find("=") - 1]
+                    adj_parent_value = row[1].replace(" ", "")
+                    parent_node = adj_parent_value
 
                     for col in range(2, len(row)):
-                        child_node = row[col].replace(" ", "")[0:row[col].find("=") - 1]
-                        cn_value = row[col].replace(" ", "")[row[col].find("="): len(row[col])]
+                        adj_child_value = row[col].replace(" ", "")
+
+                        child_node = adj_child_value[0:adj_child_value.find("=")]
+                        cn_value = adj_child_value[adj_child_value.find("=") + 1: len(row[col])]
 
                         # add values to the tree
                         self.tree.add_node(child_node, cn_value, parent_node)
