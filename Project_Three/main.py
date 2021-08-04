@@ -14,11 +14,13 @@ from convert_dataset_to_tree import DataTree
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # dataset_path = "dataset\\tree1.txt"
-    dataset_path = "dataset\\tree2.txt"
+    dataset_path = "dataset\\tree1.txt"
+    # dataset_path = "dataset\\tree2.txt"
     # dataset_path = "dataset\\practice_set.txt"
+
     dt = DataTree(dataset_path)
-    depth = 4  # place the depth value here (remember that tree1 and tree2 have different depths i.e. put 2 for tree1 and 4 for tree 2)
+    dt.tree.count_depth()  # counts the depth level, and stores it in the depth property
+    depth = dt.tree.depth
     root_node = dt.tree.root
 
     user_input = 0

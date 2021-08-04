@@ -14,6 +14,7 @@ class Tree:
         self.node_dict = {}
         self.num_node = 0
         self.root = None
+        self.depth = 0
 
     # adds a node while connecting current node (node_id) to a parent (parent_id)
     def add_node(self, node_id, node_value, parent_id):
@@ -127,6 +128,20 @@ class Tree:
     # depth-first search traversal
     def dfs_traversal(self):
         self.dfs_util(self.root)
+
+    def count_util(self, root):
+        if root is None:
+            return
+
+        for item in root.get_children_nodes():
+            node = self.node_dict[item]
+            self.depth += 1
+            self.count_util(node)
+            return
+
+
+    def count_depth(self):
+        self.count_util(self.root)
 
 
 class Node:
