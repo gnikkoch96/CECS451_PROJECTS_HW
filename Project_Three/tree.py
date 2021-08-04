@@ -129,6 +129,7 @@ class Tree:
     def dfs_traversal(self):
         self.dfs_util(self.root)
 
+    # uses dfs to count the # of depth levels the tree has 
     def count_util(self, root):
         if root is None:
             return
@@ -138,7 +139,6 @@ class Tree:
             self.depth += 1
             self.count_util(node)
             return
-
 
     def count_depth(self):
         self.count_util(self.root)
