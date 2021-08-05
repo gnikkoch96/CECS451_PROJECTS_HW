@@ -29,16 +29,14 @@ class DataTree:
 
             line_count = 0
             for row in csv_reader:
-                # NN: columns are read as row[i]
-                if line_count == 0:  # initialize the root
+                if line_count == 0:  # parse the root
                     root_parent = " "
-                    # root_parent = row[1].replace(" ", "")  # removes the whitespace
 
-                    adj_child_value = row[2].replace(" ", "")
+                    adj_child_value = row[2].replace(" ", "")  # removes whitespace from the data
                     root_node = adj_child_value[0:adj_child_value.find("=")]  # removes "=0" part into a substring
-                    root_value = adj_child_value[adj_child_value.find("=") + 1: len(adj_child_value)]  # stores the value
+                    root_value = adj_child_value[adj_child_value.find("=") + 1: len(adj_child_value)]  # stores value
 
-                    self.tree.add_node(root_node, root_value, root_parent)  # child, parent
+                    self.tree.add_node(root_node, root_value, root_parent)
                 else:  # parse everything else
                     adj_parent_value = row[1].replace(" ", "")
                     parent_node = adj_parent_value

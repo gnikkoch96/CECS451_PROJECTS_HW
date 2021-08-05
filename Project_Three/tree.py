@@ -94,6 +94,8 @@ class Tree:
 
             a = max(a, self.min_value_prune(child_node, a, b, depth - 1))
             current_node.value = a
+            current_node.alpha = a
+            current_node.beta = b
 
             if b <= a:  # this is the cutoff point
                 return a
@@ -109,6 +111,8 @@ class Tree:
 
             b = min(b, self.max_value_prune(child_node, a, b, depth - 1))
             current_node.value = b
+            current_node.alpha = a
+            current_node.beta = b
 
             if b <= a:
                 return b
@@ -155,6 +159,14 @@ class Node:
         self.pruned = True  # if visited, then this will turn into false
         self.visited = False  # is used to prevent looping
         self.child_dict = {}  # stores a dictionary of all the children of this node (aka successors)
+
+        if self.value != 0:
+            self.alpha = "N/A"
+            self.beta = "N/A"
+        else:
+            self.alpha = float("-inf")
+            self.beta = float("inf")
+
 
     def add_child(self, child_id, child_node):
         self.child_dict[child_id] = child_node
