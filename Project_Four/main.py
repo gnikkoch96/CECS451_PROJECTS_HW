@@ -1,16 +1,21 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from Graph.Graph import Graph
+from pathlib import Path
+from SearchAlgorithms.DFSRec import DFSRec
+
+# Converting maze to graph
+
+output_folder = Path("Output/")
+data_folder = Path("Data/TextData/")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+data = data_folder / "map.txt"
 
+g = Graph(data)
+g.graph_build()
+size = g.graph_length()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+g.graph_summary()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+dfs = DFSRec(g, size, 2)
+dfs.DFS_recursive()
