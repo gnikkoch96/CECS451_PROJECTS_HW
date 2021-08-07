@@ -2,7 +2,7 @@
 import pandas as pd
 from pathlib import Path
 
-
+# parses the data from the .txt file
 class LoadData(object):
 
 	def __init__(self, data_path):
@@ -15,7 +15,7 @@ class LoadData(object):
 		pass
 
 	def LoadData_Pandas(self):
-		self.data = pd.read_csv(self.data_path, sep="\t", header=None) 	
+		self.data = pd.read_csv(self.data_path, sep="\t", header=None) # converts it to a table
 		return self.data
 
 	def ColumnsCount(self):

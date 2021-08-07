@@ -1,14 +1,13 @@
-#----------------------------------------------------------------------------------------
-#	Simulate DFS algorithm.
-#   This version  of DFS, travers a graph in DFS order in recursive
-#				 
-#	(c) 2020 Arjang Fahim
+# -----------------------------------------------------------------------
 #
-#   
-#	Date: 4/10/2020
-#	email: fahim.arjang@csulb.edu
-#   version: 1.0.0
-#----------------------------------------------------------------------------------------
+#   (c) 2021 Rishika Baranawl and Nikko Chan
+#
+#   Date: 08/10/2021
+#   Name(s): Rishika Baranwal and Nikko Chan
+#   Student ID: 016064033 (Nikko), 026354235 (Rishika)
+#   E-Mail: Nikko.Chan@student.csulb.edu, rishika.baranwal@student.csulb.edu
+#   Version: 1.0.0
+# -----------------------------------------------------------------------
 
 class DFSNodeColor(object):
 	
@@ -17,10 +16,10 @@ class DFSNodeColor(object):
         self.graph = graph
         self.size = size
         self.start_node = start_node
-        
+
 
     def DFS_util(self, s):
-        
+
         s.set_visited(True)
         print (s.get_id())
         node = self.graph.get_vertex(s.get_id())
@@ -30,8 +29,7 @@ class DFSNodeColor(object):
                 self.DFS_util(n)
 
     def DFS_recursive(self):
-        s_node = self.graph.get_vertex(self.start_node)
-        self.DFS_util(s_node)
+        self.DFS_util(self.start_node)
 
 
 

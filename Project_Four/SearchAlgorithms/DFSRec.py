@@ -1,14 +1,13 @@
-#----------------------------------------------------------------------------------------
-#	Simulate DFS algorithm.
-#   This version  of DFS, travers a graph in DFS order in recursive
-#				 
-#	(c) 2020 Arjang Fahim
+# -----------------------------------------------------------------------
+#   Simulate DFS Algorithm
+#   (c) 2021 Rishika Baranawl and Nikko Chan
 #
-#   
-#   Date: 4/10/2020
-#	email: fahim.arjang@csulb.edu
-#   version: 1.0.0
-#----------------------------------------------------------------------------------------
+#   Date: 08/10/2021
+#   Name(s): Rishika Baranwal and Nikko Chan
+#   Student ID: 016064033 (Nikko), 026354235 (Rishika)
+#   E-Mail: Nikko.Chan@student.csulb.edu, rishika.baranwal@student.csulb.edu
+#   Version: 1.0.0
+# -----------------------------------------------------------------------
 
 class DFSRec(object):
 	
