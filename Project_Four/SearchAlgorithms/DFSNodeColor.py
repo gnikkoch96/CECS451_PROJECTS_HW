@@ -19,7 +19,6 @@ class DFSNodeColor(object):
     def DFS_util(self, s):
         s.set_visited(True)
 
-        print("Start Domain:", s.get_id(), ' :', s.domain)
         # set the color of the node
         s.color = s.domain.popitem()  # stores a tuple of <id, value> (which is iterable) (example: (0, 'red'))
 
@@ -38,13 +37,11 @@ class DFSNodeColor(object):
         self.DFS_util(self.start_node)
 
     def mac(self, v):  # used to update the vertex's connected node's domain after choosing a color
-        print("Vertex:", v.get_id(), "-> ", v.color[1])
         for node in v.get_connections():
-            print(node.get_id(), " Domain (Before):", node.domain)
-            if v.color[0] in node.domain.keys():  # checks to see if the color is in the domain or not
-                del node.domain[v.color[0]]
+            n = self.graph.get_vertex(node.get_id())
+            if v.color[0] in n.domain.keys():  # checks to see if the color id is in the domain
+                del n.domain[v.color[0]]
 
-            print(node.get_id(), " Domain (After):", node.domain)
 
 
     # ------------------------[End of DFS class]----------------------------------------------------------------
