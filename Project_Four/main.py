@@ -19,6 +19,7 @@ size = g.graph_length()
 
 # solve the graph color puzzle
 dfs = DFSNodeColor(g, size, g.get_popular_node())  # the most popular node will be chosen at the start (i.e. degree heuristics)
+# dfs = DFSNodeColor(g, size, g.get_popular_node())  # the most popular node will be chosen at the start (i.e. degree heuristics)
 dfs.DFS_recursive()
 
 # print out the dfs path along with their color
