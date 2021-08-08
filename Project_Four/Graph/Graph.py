@@ -98,8 +98,8 @@ class Vertex:
         self.id = node
         self.adjacent = {}
         self.visited = False
-        self.color = None  # the color will be chosen during the DFS recursion
-        self.domain = {0: 'red', 1: 'blue', 2: 'green'}  # starting domain of each node
+        self.color = None  # place the value of the domain here (i.e. 'red', 'blue', or 'green')
+        self.domain = {2: 'green', 1: 'blue', 0: 'red'} # reversed because the popitem() dictionary method pops the last one
 
     def __str__(self):
         return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
