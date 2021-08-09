@@ -20,7 +20,11 @@ class DFSNodeColor(object):
         s.set_visited(True)
 
         # set the color of the node
-        s.color = s.domain.popitem()  # stores a tuple of <id, value> (which is iterable) (example: (0, 'red'))
+        if len(s.color_domain) != 0:
+            s.color = s.color_domain.popitem()  # stores a tuple of <id, value> (which is iterable) (example: (0, 'red'))
+        else:
+            print("Arc Consistency failed @ vertex", s.get_id(), "\nexiting program...")
+            exit()
 
         # update domain to the rest of the neighbors (to make it arc-consistent)
         self.mac(s)
@@ -39,9 +43,8 @@ class DFSNodeColor(object):
     def mac(self, v):  # used to update the vertex's connected node's domain after choosing a color
         for node in v.get_connections():
             n = self.graph.get_vertex(node.get_id())
-            if v.color[0] in n.domain.keys():  # checks to see if the color id is in the domain
-                del n.domain[v.color[0]]
-
+            if v.color[0] in n.color_domain.keys():  # checks to see if the color id is in the domain
+                del n.color_domain[v.color[0]]
 
 
     # ------------------------[End of DFS class]----------------------------------------------------------------

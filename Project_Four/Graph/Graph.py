@@ -99,8 +99,8 @@ class Vertex:
         self.adjacent = {}
         self.visited = False
         self.color = None  # place the value of the domain here (i.e. 'red', 'blue', or 'green')
-        self.domain = {3:'yellow', 2: 'green', 1: 'blue', 0: 'red'} # reversed because the popitem() dictionary method pops the last one
-        # self.domain = {2: 'green', 1: 'blue', 0: 'red'} # reversed because the popitem() dictionary method pops the last one
+        # self.domain = {3:'yellow', 2: 'green', 1: 'blue', 0: 'red'} # reversed because the popitem() dictionary method pops the last one
+        self.color_domain = {2: 'green', 1: 'blue', 0: 'red'} # reversed because the popitem() dictionary method pops the last one
 
     def __str__(self):
         return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
